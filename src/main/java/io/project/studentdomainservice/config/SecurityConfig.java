@@ -8,8 +8,12 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -19,14 +23,20 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
 
 
-    @Bean
+   @Bean
     InMemoryUserDetailsManager users(){
-        return new InMemoryUserDetailsManager(
-                User.withUsername("user1")
-                        .password("{noop}password1")
-                        .roles("ADMIN")
-                        .build()
-        );
+       UserDetails user1= User.withUsername("user1")
+               .password("{noop}password1")
+               .roles("ADMIN").build();
+       UserDetails user2= User.withUsername("user2")
+               .password("{noop}password2")
+               .roles()
+                .build();
+
+       Collection<UserDetails> usersList = new ArrayList<>();;
+       usersList.add(user1);
+       usersList.add(user2);
+       return new InMemoryUserDetailsManager(usersList);
     }
 
 
