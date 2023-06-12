@@ -25,4 +25,9 @@ public class HomeController {
         return "Hello, Admin!";
     }
 
+    @GetMapping("/newadmin")
+    public String newAdmin() {
+        return "Hello,NEW Admin!";
+    }
+
 }

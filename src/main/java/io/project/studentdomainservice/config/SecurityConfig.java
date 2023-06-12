@@ -31,6 +31,7 @@ public class SecurityConfig {
                    .authorizeRequests(auth->auth
                            .antMatchers("/h2-console/**").permitAll()
                            .mvcMatchers("/api/students").permitAll()
+                           .mvcMatchers("/newadmin").hasAnyRole("ADMIN")
                            .anyRequest().authenticated())
                    .userDetailsService(jpaStudentDetailsService)
                    .headers(headers -> headers.frameOptions().sameOrigin())
