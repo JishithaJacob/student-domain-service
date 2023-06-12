@@ -4,8 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/*Spring Boot 3.0 will be the first version of Spring Boot
+that makes use of Jakarta EE 9 APIs (jakarta.) instead of EE 8 (javax.)*/
 @Entity
-/*Spring Boot 3.0 will be the first version of Spring Boot that makes use of Jakarta EE 9 APIs (jakarta.) instead of EE 8 (javax.)*/
 public class Student {
     @Id
     @GeneratedValue

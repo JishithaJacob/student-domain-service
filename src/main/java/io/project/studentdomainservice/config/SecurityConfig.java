@@ -1,6 +1,7 @@
 package io.project.studentdomainservice.config;
 
 import io.project.studentdomainservice.service.JpaStudentDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -16,13 +17,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-
-    private final JpaStudentDetailsService jpaStudentDetailsService;
-
-    public SecurityConfig(JpaStudentDetailsService jpaStudentDetailsService){
-        this.jpaStudentDetailsService=jpaStudentDetailsService;
-    }
-
+    @Autowired
+    JpaStudentDetailsService jpaStudentDetailsService;
     @Bean
     /*WebSecurityConfigureAdapter got deprecated therefore using SecurityFilterChain*/
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
