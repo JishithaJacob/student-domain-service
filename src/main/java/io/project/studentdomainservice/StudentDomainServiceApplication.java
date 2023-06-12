@@ -18,9 +18,11 @@ public class StudentDomainServiceApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(StudentRepository students, PasswordEncoder encoder) {
 		return args -> {
-			students.save(new Student("Ann",encoder.encode("passord"),"USER",1));
-			students.save(new Student("Mary",encoder.encode("passord"),"USER",1));
+			students.save(new Student("Ann",encoder.encode("password"),"ROLE_USER,ROLE_ADMIN",1));
+			students.save(new Student("Mary",encoder.encode("password"),"ROLE_USER",1));
 		};
+
+		/*ROLE_USER- same keyword required*/
 	}
 
 }

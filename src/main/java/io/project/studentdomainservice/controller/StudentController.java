@@ -1,6 +1,5 @@
 package io.project.studentdomainservice.controller;
 
-
 import io.project.studentdomainservice.model.Student;
 import io.project.studentdomainservice.repository.StudentRepository;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,4 +29,6 @@ public class StudentController {
     public Student getStudentById(@PathVariable ("id") Student student){
        return student;
     }
+
+
 }
