@@ -4,6 +4,7 @@ import io.project.studentdomainservice.model.Student;
 import io.project.studentdomainservice.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,8 @@ public class HomeController {
 
     @Autowired
     StudentRepository repository;
+    @Autowired
+    PasswordEncoder encoder;
     @GetMapping()
     public String home() {
         return "Hello, World!";
@@ -41,7 +44,7 @@ public class HomeController {
     @PostMapping("/createStudent")
     public Student createStudent(@RequestBody Map<String,String> body){
         String name= body.get("name");
-        String password = body.get("password");
+        String password = encoder.encode(body.get("password"));
         String role = body.get("role");
         int enabled = Integer.parseInt(body.get("enabled"));
         return repository.save(new Student(name,password,role,enabled));
