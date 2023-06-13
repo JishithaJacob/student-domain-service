@@ -23,9 +23,9 @@ public class SecurityConfig {
     /*WebSecurityConfigureAdapter got deprecated therefore using SecurityFilterChain*/
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
            return http
-                   .csrf(csrf -> csrf.ignoringAntMatchers("/h2-console/**"))
+                   .csrf(csrf -> csrf.ignoringAntMatchers("/createStudent"))
                    .authorizeRequests(auth->auth
-                           .antMatchers("/h2-console/**").permitAll()
+                           .antMatchers("/createStudent").permitAll()
                            .mvcMatchers("/api/students").permitAll()
                            .mvcMatchers("/newadmin").hasAnyRole("ADMIN")
                            .anyRequest().authenticated())

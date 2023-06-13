@@ -1,19 +1,25 @@
 package io.project.studentdomainservice.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.springframework.beans.factory.annotation.Value;
+
+import javax.persistence.*;
 
 /*Spring Boot 3.0 will be the first version of Spring Boot
 that makes use of Jakarta EE 9 APIs (jakarta.) instead of EE 8 (javax.)*/
 @Entity
+@Table(name="Student")
 public class Student {
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="student_id", nullable = false)
+    private int id;
+    @Column(name="student_name", nullable = false)
     private String username;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private String role;
+    @Column(nullable = false)
     private int enabled;
 
     public Student() {}
@@ -26,11 +32,11 @@ public class Student {
         this.enabled=enabled;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
